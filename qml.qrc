@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>HomeForm.qml</file>
+        <file>FormReg.qml</file>
+        <file>FormLogin.qml</file>
+        <file>design.ico</file>
+        <file>Global.js</file>
+    </qresource>
+</RCC>
