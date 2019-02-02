@@ -79,18 +79,3 @@ QByteArray Storage::getTickets(int count)
     return QJsonDocument(obj).toJson();
 
 }
-
-//QByteArray Storage::getTickets()
-//{
-//    qDebug() << "START: getTickets";
-
-//    QByteArray packLogin = "Basic " + QByteArray(QString(userData.email + ":" + userData.pass).toUtf8()).toBase64();
-//    QUrl url("https://designmobile.helpdeskeddy.com/api/v2/tickets?page=1");
-//    QNetworkRequest request(url);
-//    request.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::AlwaysNetwork);
-//    request.setRawHeader("Authorization",  packLogin);
-//    request.setHeader( QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-//    QByteArray array = getServerData(request, GET);
-//    qDebug() << "END: getTickets";
-//    return array;
-//}
