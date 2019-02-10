@@ -36,9 +36,21 @@ HEADERS += \
     storage.h \
     network.h
 
+#OPENSSL_LIBS='-L/opt/ssl/lib -lssl -lcrypto'
+
+#LIBS += -lssl -lcrypto
+
+#contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+#    ANDROID_EXTRA_LIBS = D:/projects/test/myStackTest/libcrypto.so D:/projects/test/myStackTest/libssl.so
+#}
+
 contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
-    ANDROID_EXTRA_LIBS = D:/projects/test/myStackTest/libcrypto.so D:/projects/test/myStackTest/libssl.so
+    ANDROID_EXTRA_LIBS = \
+        /home/droid/projects/myStackTest/../../programs/libcrypto.so \
+        $$PWD/../../programs/libssl.so
 }
+
+
 
 
 

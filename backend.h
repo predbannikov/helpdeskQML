@@ -49,16 +49,24 @@ private:
     QJsonDocument userDataToJson();
 
     void printUserData();
+
 signals:
     void sendUserData(QByteArray jsonArray);
     void sendField(QByteArray field);
     void updateTicketsList();
+
+    void sendCustomData(QByteArray jarray);
+
+
 public slots:
+    void isDataTicket(QByteArray jarray);
     void ticketCreate(QByteArray array);
     void login(QByteArray jarray);
     void getDataStor(QByteArray array);
     void logout();
     void eventTimer();
+
+    void updateStatusTicket(QByteArray packJson, int id);
 };
 
 

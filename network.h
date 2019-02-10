@@ -18,6 +18,12 @@ struct UserData{
     bool active = false;
 };
 
+struct MessageProcess {
+    QString msg;
+    bool check = true;
+    int error = 0;
+};
+
 
 class Network : public QObject
 {
@@ -27,14 +33,18 @@ private:
 protected:
     enum TYPE {GET, POST, DELETE, PUT};
     UserData userData;
+    MessageProcess msgProc;
+    QJsonParseError jError;
     QNetworkAccessManager *netMan;
 
-
-
+    QByteArray requestTypeJson(QByteArray &packJson, QString url, TYPE type);
+    QByteArray updateTicket(QByteArray &packJson, int id);
 
     QByteArray createTicket(QByteArray array);
     QByteArray getTickets();
+    QByteArray getTicketsRange(QString date_start, QString date_end, bool sort_asc = false);
     QByteArray getServerData(QNetworkRequest req, TYPE t, QByteArray postData = "");
+
 
 };
 

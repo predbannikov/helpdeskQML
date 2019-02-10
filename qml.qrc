@@ -5,7 +5,7 @@
         <file>HomeForm.qml</file>
         <file>FormReg.qml</file>
         <file>FormLogin.qml</file>
-        <file>design.ico</file>
         <file>Global.js</file>
+        <file>design.ico</file>
     </qresource>
 </RCC>

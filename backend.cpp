@@ -19,7 +19,6 @@ BackEnd::BackEnd(QObject *parent) : Storage(parent)
 
     connect(this, &BackEnd::updateTicketsList, this, &Storage::updateStorage);
 
-
 }
 BackEnd::~BackEnd()
 {
@@ -51,23 +50,28 @@ void BackEnd::printUserData()
 
 }
 
+void BackEnd::isDataTicket(QByteArray jarray)
+{
+    emit sendCustomData(jarray);
+}
+
 void BackEnd::getDataStor(QByteArray array)
 {
     QJsonParseError jsonParseError;
     QJsonDocument jdoc = QJsonDocument::fromJson(array, &jsonParseError);
     QJsonObject obj = jdoc.object();
     QByteArray respArray;
-    if(obj.contains("tickets")) {
-        int count = obj["count"].toInt();
+    if(obj.contains("sortABC")) {
+        QJsonObject jobj2 = obj["sortABC"].toObject();
+        int startIndex = jobj2["startIndex"].toInt();
+        int endIndex = jobj2["endIndex"].toInt();
 
-
-        respArray = getTickets(count);
+        respArray = getTickets(startIndex, endIndex);
     }
     if(respArray.isEmpty()) {
         qDebug() << "getDataStor: respArray.isEmpty";
         return;
     }
-
     emit sendField(respArray);
 }
 
@@ -231,6 +235,7 @@ void BackEnd::findActiveUser()
         if(readUserDataActive(query)) {
             qDebug() << "Active user data found" << pathApp + "/" << subdir;
             login(query.toUtf8());
+
             break;
         }
     }
@@ -259,6 +264,10 @@ void BackEnd::login(QByteArray jarray)
             qDebug() << "success save userData active state";
     }
     emit sendUserData(userDataToJson().toJson());
+
+    // запуск процесса скачивания тикетов
+    launchDownloadTicket();
+
     return;
 }
 
@@ -278,6 +287,11 @@ void BackEnd::eventTimer()
     qDebug() << "time event";
     if(userData.active)
         emit updateTicketsList();
+}
+
+void BackEnd::updateStatusTicket(QByteArray packJson, int id)
+{
+    updateTicket(packJson, id);
 }
 
 
