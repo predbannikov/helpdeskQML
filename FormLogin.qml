@@ -7,38 +7,38 @@ import "Global.js" as Glob
 Page {
     title: qsTr("login")
     id: windowHome
-    anchors.margins: 15
+//    anchors.margins: 15
     background: Rectangle {
         color: "#cc242421"
     }
     property int  stepIndex: 35
 
-    Popup {
-        id: popup
-        y: 35
+//    Popup {
+//        id: popup
+//        y: 35
 
-        width: parent.width / 1.5
-        height: 50
-        modal: true
-//        onOpened: {
-//            close()
+//        width: parent.width / 1.5
+//        height: 50
+//        modal: true
+////        onOpened: {
+////            close()
+////        }
+//        Rectangle {
+//            anchors.fill: parent
+//            Text {
+//                anchors.fill: parent
+//                wrapMode: Text.WordWrap
+//                id: popLabel
+//                font.pixelSize: 24
+//            }
 //        }
-        Rectangle {
-            anchors.fill: parent
-            Text {
-                anchors.fill: parent
-                wrapMode: Text.WordWrap
-                id: popLabel
-                font.pixelSize: 24
-            }
-        }
-        exit: Transition {
-            NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 1500 }
-            }
-        enter: Transition {
-            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 1500 }
-        }
-    }
+//        exit: Transition {
+//            NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 1500 }
+//            }
+//        enter: Transition {
+//            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 1500 }
+//        }
+//    }
 
     Menu {
         id: menu
@@ -108,16 +108,21 @@ Page {
                 height: textName.height
                 width: windowHome.width
                 id: squadRos
-                anchors.margins: 15
+//                anchors.margins: 15
                 Text {
-                    x: 15
+//                    x: 15
                     id: textName
                     text: "#" + name
                     color: "#e6e6e6"
                     font.pixelSize: Qt.application.font.pixelSize * 1.7
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: stackView.push("EditorTicket.qml")
+
+                        onClicked: {
+                            var objItem = fruitModel.get(index)
+                            Glob.curIdToEdit = objItem.id_ticket
+                            stackView.push("EditorTicket.qml")
+                        }
                     }
                 }
                 Text {
@@ -131,7 +136,7 @@ Page {
                 }
                 Text {
                     anchors.right: parent.right
-                    anchors.margins: 15
+//                    anchors.margins: 15
                     text: stat_id
 //                    color:  "open" == stat_id ? "#FF0000" : "#00FF00"
                     color:  if("open" == stat_id)
@@ -153,8 +158,6 @@ Page {
                         onClicked:  {
 //                            popup.open()
 //                            menu.open()
-//                            console.log(popup.width, popup.height, x, y)
-//                            console.log(index);
                         }
                     }
                 }
@@ -225,7 +228,7 @@ Page {
 
     Timer {
         id: timer
-        interval: 20000;                                        // Таймаут обновления
+        interval: 60000;                                        // Таймаут обновления
         repeat: true;
         onTriggered: {
             backEnd.eventTimer()

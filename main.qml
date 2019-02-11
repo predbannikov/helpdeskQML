@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.3
 import "."
 import "Global.js" as Glob
 ApplicationWindow {
+    x: 1400
+    y: 1200
     width: 360
     height: 640
     visible: true
@@ -116,6 +118,7 @@ ApplicationWindow {
     Loader {
         id: loader
         anchors.fill: parent
+//        anchors.margins: 15
 //        source: HomeForm
     }
 

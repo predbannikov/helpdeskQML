@@ -6,6 +6,9 @@ var path = "";
 var indexStart = 0;
 var indexEnd = 0;
 
+//  For editor ticket
+var curIdToEdit = 0;
+
 
 function setJDataUser(b) {
     var data = JSON.parse(b);

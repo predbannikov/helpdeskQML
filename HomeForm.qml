@@ -92,6 +92,7 @@ Page {
     StackView {
         id: stackView
         anchors.fill: parent
+        anchors.margins: 10
         initialItem: FormLogin {}
     }
 }
