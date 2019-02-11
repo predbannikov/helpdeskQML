@@ -117,11 +117,11 @@ Page {
                     font.pixelSize: Qt.application.font.pixelSize * 1.7
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: fruitModel.remove(index)
+                        onClicked: stackView.push("EditorTicket.qml")
                     }
                 }
                 Text {
-//                    visible: false
+                    visible: false
                     anchors.left: textName.right
                     text: "id:" + id_ticket
                     color: "#5555FF"
@@ -133,7 +133,13 @@ Page {
                     anchors.right: parent.right
                     anchors.margins: 15
                     text: stat_id
-                    color:  "open" == stat_id ? "#FF0000" : "#00FF00"
+//                    color:  "open" == stat_id ? "#FF0000" : "#00FF00"
+                    color:  if("open" == stat_id)
+                                return "#FF0000";
+                            else  if("process" == stat_id)
+                                return ("#ff9900");
+                            else
+                                return "#00FF00";
                     font.bold: true
                     font.pixelSize: Qt.application.font.pixelSize * 1.3
                     MouseArea {
