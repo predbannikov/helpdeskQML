@@ -7,5 +7,6 @@
         <file>FormLogin.qml</file>
         <file>Global.js</file>
         <file>design.ico</file>
+        <file>EditorTicket.qml</file>
     </qresource>
 </RCC>
