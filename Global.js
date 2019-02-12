@@ -7,8 +7,18 @@ var indexStart = 0;
 var indexEnd = 0;
 
 //  For editor ticket
-var curIdToEdit = 0;
+//var curIdToEdit = 0;
 
+var itemListView = {
+    id: 0,
+    name: "",
+    status_id: ""
+}
+function setItem(a, b, c) {
+    itemListView.id = a;
+    itemListView.name = b;
+    itemListView.status_id = c;
+}
 
 function setJDataUser(b) {
     var data = JSON.parse(b);

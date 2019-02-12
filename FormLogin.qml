@@ -13,33 +13,6 @@ Page {
     }
     property int  stepIndex: 35
 
-//    Popup {
-//        id: popup
-//        y: 35
-
-//        width: parent.width / 1.5
-//        height: 50
-//        modal: true
-////        onOpened: {
-////            close()
-////        }
-//        Rectangle {
-//            anchors.fill: parent
-//            Text {
-//                anchors.fill: parent
-//                wrapMode: Text.WordWrap
-//                id: popLabel
-//                font.pixelSize: 24
-//            }
-//        }
-//        exit: Transition {
-//            NumberAnimation { property: "opacity"; from: 1.0; to: 0.0; duration: 1500 }
-//            }
-//        enter: Transition {
-//            NumberAnimation { property: "opacity"; from: 0.0; to: 1.0; duration: 1500 }
-//        }
-//    }
-
     Menu {
         id: menu
         property int id_index: 1
@@ -51,7 +24,6 @@ Page {
         }
         MenuItem {
             height: 90
-
             id: menuItem
             property int  indexItemId: 0
 
@@ -120,7 +92,7 @@ Page {
 
                         onClicked: {
                             var objItem = fruitModel.get(index)
-                            Glob.curIdToEdit = objItem.id_ticket
+                            Glob.setItem(objItem.id_ticket, objItem.name, objItem.stat_id);
                             stackView.push("EditorTicket.qml")
                         }
                     }
@@ -168,9 +140,7 @@ Page {
                         height: 1
                         width: parent.width / 1.1
                     }
-
             }
-
     }
     ListView {
         id: listView
